@@ -25,7 +25,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.ViewHolder> 
         this.context = context;
         this.audios = audios;
     }
-
+//dfsdajj
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -48,7 +48,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView title, artist;
-        MediaPlayer mediaPlayer;
+        MediaPlayer mediaPlayer=new MediaPlayer();
         public ViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
@@ -57,7 +57,8 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mediaPlayer = new MediaPlayer();
+                    if(mediaPlayer.isPlaying())
+                        mediaPlayer.stop();
                     mediaPlayer.reset();
                     //set file path
                     try {
