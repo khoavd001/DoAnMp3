@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
@@ -32,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SearchcasiFragment extends Fragment {
-
+    public static int e;
     RecyclerView recyclerview;
     AllSingerAdapter seachcasiAdapter;
     Toolbar toolbar;
@@ -51,7 +52,7 @@ public class SearchcasiFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_searchcasi, container, false);
 
         recyclerview = (RecyclerView) view.findViewById(R.id.recyclerviewcasi);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerview.setLayoutManager(layoutManager);
         textViewkhongtimthay=view.findViewById(R.id.textviewkhongcodulieucasi);
 
@@ -88,8 +89,8 @@ public class SearchcasiFragment extends Fragment {
                 ArrayList<CaSi> mangcasi= (ArrayList<CaSi>) response.body();
                 if (mangcasi.size()>0){
                     seachcasiAdapter = new AllSingerAdapter(getActivity(),mangcasi);
-                    LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
-                    recyclerview.setLayoutManager(linearLayoutManager);
+                    GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),2);
+                    recyclerview.setLayoutManager(gridLayoutManager);
                     recyclerview.setAdapter(seachcasiAdapter);
                     textViewkhongtimthay.setVisibility(View.GONE);
                     recyclerview.setVisibility(View.VISIBLE);

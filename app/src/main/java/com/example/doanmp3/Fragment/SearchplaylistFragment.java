@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
@@ -53,7 +54,7 @@ public class SearchplaylistFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_search_playlist, container, false);
 
         recyclerview = (RecyclerView) view.findViewById(R.id.recyclerviewsearchplaylist);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerview.setLayoutManager(layoutManager);
         textViewkhongtimthay=view.findViewById(R.id.textviewkhongcodulieuplaylist);
 
@@ -90,8 +91,8 @@ public class SearchplaylistFragment extends Fragment {
                 ArrayList<Playlist> mangplaylist= (ArrayList<Playlist>) response.body();
                 if (mangplaylist.size()>0){
                     searchplaylist = new PlaylistAdapter(getActivity(),mangplaylist);
-                    LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
-                    recyclerview.setLayoutManager(linearLayoutManager);
+                    GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),2);
+                    recyclerview.setLayoutManager(gridLayoutManager);
                     recyclerview.setAdapter(searchplaylist);
                     textViewkhongtimthay.setVisibility(View.GONE);
                     recyclerview.setVisibility(View.VISIBLE);

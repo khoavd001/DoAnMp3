@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
@@ -51,7 +52,7 @@ public class SearchalbumFragment extends Fragment{
         View view=inflater.inflate(R.layout.fragment_searchalbum, container, false);
 
         recyclerview = (RecyclerView) view.findViewById(R.id.recyclerviewsearchalbum);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerview.setLayoutManager(layoutManager);
         textViewkhongtimthay=(TextView) view.findViewById(R.id.textviewkhongcodulieualbum);
         setHasOptionsMenu(true);
@@ -87,7 +88,7 @@ public class SearchalbumFragment extends Fragment{
                 ArrayList<Album> albums= (ArrayList<Album>) response.body();
                 if (albums.size()>0){
                     searchalbumAdapter = new AlbumAdapter(getActivity(),albums);
-                    LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
+                    GridLayoutManager linearLayoutManager=new GridLayoutManager(getActivity(),2);
                     recyclerview.setLayoutManager(linearLayoutManager);
                     recyclerview.setAdapter(searchalbumAdapter);
                     textViewkhongtimthay.setVisibility(View.GONE);
