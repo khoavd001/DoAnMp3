@@ -1,11 +1,11 @@
 package com.example.doanmp3.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -57,8 +57,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(mediaPlayer.isPlaying())
-                        mediaPlayer.stop();
+                    mediaPlayer = new MediaPlayer();
                     mediaPlayer.reset();
                     //set file path
                     try {
@@ -68,6 +67,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.ViewHolder> 
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
 
                 }
             });

@@ -8,11 +8,14 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.MediaStore;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.doanmp3.Fragment.PlayFragment;
 import com.example.doanmp3.Model.BaiHat;
 import com.example.doanmp3.R;
 
@@ -31,13 +34,18 @@ public class PlayActivity extends AppCompatActivity {
     CircleIndicator indicator;
     MediaPlayer mediaPlayer;
     BaiHat baiHat;
+    PlayFragment playFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
         AnhXa();
         GetIntent();
+        playFragment=new PlayFragment();
+
+
     }
+
 
     private void GetIntent() {
         Intent intent = getIntent();
@@ -46,6 +54,7 @@ public class PlayActivity extends AppCompatActivity {
             new PlayMp3().execute(baiHat.getLinkBaiHat());
         }
     }
+
 
     private void AnhXa() {
         toolbar = findViewById(R.id.toolbar_play);
@@ -82,7 +91,6 @@ public class PlayActivity extends AppCompatActivity {
                     mediaPlayer.reset();
                 }
             });
-
 
             mediaPlayer.setDataSource(s);
             mediaPlayer.prepare();
